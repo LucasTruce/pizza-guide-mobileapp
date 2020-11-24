@@ -1,11 +1,22 @@
 package com.app.pizza.model;
 
+import java.util.List;
+
 public class UserAuthResponse {
     private String token;
     private String userName;
     private String email;
     //Setters and getters
 
+    private List<String> roles;
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
 
     public String getToken() {
         return token;
