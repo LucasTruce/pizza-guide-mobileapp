@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Call<UserRegisterResponse> call = userService.registration(new UserRegister(loginInput.getText().toString(), passwordInput.getText().toString(), passwordInput.getText().toString()));
+                Call<UserRegisterResponse> call = userService.registration(new UserRegister(loginInput.getText().toString(), passwordInput.getText().toString(), emailInput.getText().toString()));
 
                 call.enqueue(new Callback<UserRegisterResponse>() {
                     @Override
@@ -57,7 +57,14 @@ public class RegisterActivity extends AppCompatActivity {
                         if(response.isSuccessful()){
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
-                        }}
+                        }
+                        else
+                        {
+                            textView.setText("Zle dane");
+                            textView.setVisibility(TextView.VISIBLE);
+                            Log.d("ERROR","ERROR");
+                        }
+                    }
 
                     @Override
                     public void onFailure(Call<UserRegisterResponse> call, Throwable t) {
