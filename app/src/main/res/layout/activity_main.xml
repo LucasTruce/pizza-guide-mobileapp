@@ -51,10 +51,10 @@
             android:text="@string/register" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/errorTextLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/textview" />
+            tools:visibility="invisible" />
 
     </LinearLayout>
 

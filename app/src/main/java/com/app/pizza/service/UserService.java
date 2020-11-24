@@ -2,6 +2,8 @@ package com.app.pizza.service;
 
 import com.app.pizza.model.UserAuthResponse;
 import com.app.pizza.model.UserLogin;
+import com.app.pizza.model.UserRegister;
+import com.app.pizza.model.UserRegisterResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -11,4 +13,7 @@ public interface UserService {
 
     @POST("/auth/signin")
     Call<UserAuthResponse> authorization(@Body UserLogin login);
+
+    @POST("/auth/signup")
+    Call<UserRegisterResponse> registration(@Body UserRegister register);
 }

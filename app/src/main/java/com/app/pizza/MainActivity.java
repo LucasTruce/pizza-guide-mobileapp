@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         loginInput = findViewById(R.id.loginUsername);
         passwordInput = findViewById(R.id.loginPassword);
-        textView = findViewById(R.id.textView);
+        textView = findViewById(R.id.errorTextLogin);
 
         findViewById(R.id.loginButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,12 +64,22 @@ public class MainActivity extends AppCompatActivity {
                             if(userAuthResponse.getRoles().toString().contains("ROLE_ADMIN")){
                                 startActivity(intent);
                             }
-                            else textView.setText("Brak uprawnien administratora");
-                        }}
+                            else
+                            {
+                                textView.setText("Brak uprawnien administratora");
+                                textView.setVisibility(TextView.VISIBLE);
+                            }
 
+                        }
+                        else
+                    {
+                        textView.setText("Zle dane");
+                        textView.setVisibility(TextView.VISIBLE);
+                        Log.d("ERROR","ERROR");
+                    }
+                    }
                     @Override
                     public void onFailure(Call<UserAuthResponse> call, Throwable t) {
-
                     }
                 });
             }

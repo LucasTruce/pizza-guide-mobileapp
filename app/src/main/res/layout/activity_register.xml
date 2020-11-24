@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -12,33 +13,39 @@
             android:id="@+id/registerUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:ems="10"
             android:hint="@string/username"
-            android:inputType="textPersonName"
-            android:autofillHints="" />
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/registerPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:ems="10"
             android:hint="@string/password"
-            android:inputType="textPassword"
-            android:autofillHints="" />
+            android:inputType="textPassword" />
 
         <EditText
             android:id="@+id/registerEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:ems="10"
             android:hint="@string/e_mail"
-            android:inputType="textEmailAddress"
-            android:autofillHints="" />
+            android:inputType="textEmailAddress" />
 
         <Button
             android:id="@+id/registerButtonRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/register" />
+
+        <TextView
+            android:id="@+id/errorTextRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:visibility="invisible" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
