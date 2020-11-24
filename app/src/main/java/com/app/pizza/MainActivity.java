@@ -2,10 +2,13 @@ package com.app.pizza;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.app.pizza.model.UserAuthResponse;
 import com.app.pizza.model.UserLogin;
@@ -21,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     UserService userService;
     EditText loginInput;
     EditText passwordInput;
-
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,18 +36,35 @@ public class MainActivity extends AppCompatActivity {
 
         loginInput = findViewById(R.id.loginName);
         passwordInput = findViewById(R.id.loginPassword);
+        textView = findViewById(R.id.textView);
 
         findViewById(R.id.loginButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Call<UserAuthResponse> call = userService.authorization(new UserLogin(loginInput.getText().toString(), passwordInput.getText().toString()));
+
+                final SharedPreferences sharedPref = getSharedPreferences("pref", 0);
+
                 call.enqueue(new Callback<UserAuthResponse>() {
                     @Override
                     public void onResponse(Call<UserAuthResponse> call, Response<UserAuthResponse> response) {
                         if(response.isSuccessful()){
+                            Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
                             Log.d("string",response.body().toString());
                             UserAuthResponse userAuthResponse = response.body();
                             Log.d("TOKEN", userAuthResponse.getToken());
+
+                            //wysyłanie wartości do innego pliku przez sharedpreferences
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("TOKEN", "Bearer " + response.body().getToken());
+                            editor.apply();
+
+                            Log.d("Rola", userAuthResponse.getRoles().toString());
+
+                            if(userAuthResponse.getRoles().toString().contains("ROLE_ADMIN")){
+                                startActivity(intent);
+                            }
+                            else textView.setText("Brak uprawnien administratora");
                         }}
 
                     @Override
