@@ -19,24 +19,24 @@
             android:text="@string/login_page" />
 
         <EditText
-            android:id="@+id/loginName"
+            android:id="@+id/loginUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:hint="@string/username"
             android:importantForAutofill="no"
-            tools:ignore="LabelFor"
-            />
+            android:inputType="textPersonName"
+            tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/loginPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            tools:ignore="LabelFor,TextFields"
+            android:hint="@string/password"
             android:importantForAutofill="no"
-            />
+            android:inputType="textPersonName"
+            tools:ignore="LabelFor,TextFields" />
 
         <Button
             android:id="@+id/loginButton"
@@ -45,7 +45,7 @@
             android:text="@string/login" />
 
         <Button
-            android:id="@+id/registerButton"
+            android:id="@+id/registerButtonMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/register" />

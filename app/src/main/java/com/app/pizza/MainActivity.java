@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         userService = ServiceGenerator.createService(UserService.class);
 
-        loginInput = findViewById(R.id.loginName);
+        loginInput = findViewById(R.id.loginUsername);
         passwordInput = findViewById(R.id.loginPassword);
         textView = findViewById(R.id.textView);
 
@@ -74,6 +74,17 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+
+        findViewById(R.id.registerButtonMain).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
 
     }
 }
