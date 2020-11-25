@@ -64,13 +64,14 @@ public class MainActivity extends AppCompatActivity {
 
                         if(response.isSuccessful()){
                             Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
-                            Log.d("string",response.body().toString());
+
                             UserAuthResponse userAuthResponse = response.body();
-                            Log.d("TOKEN", userAuthResponse.getToken());
 
                             //wysyłanie wartości do innego pliku przez sharedpreferences
                             SharedPreferences.Editor editor = sharedPref.edit();
-                            editor.putString("TOKEN", "Bearer " + response.body().getToken());
+                            editor.putString("token", "Bearer " + response.body().getToken());
+                            editor.putString("username", userAuthResponse.getUsername());
+                            editor.putString("email", userAuthResponse.getEmail());
                             editor.apply();
 
                             Log.d("Rola", userAuthResponse.getRoles().toString());

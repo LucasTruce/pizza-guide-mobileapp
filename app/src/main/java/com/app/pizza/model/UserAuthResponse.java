@@ -4,7 +4,7 @@ import java.util.List;
 
 public class UserAuthResponse {
     private String token;
-    private String userName;
+    private String username;
     private String email;
     //Setters and getters
 
@@ -26,12 +26,12 @@ public class UserAuthResponse {
         this.token = token;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
