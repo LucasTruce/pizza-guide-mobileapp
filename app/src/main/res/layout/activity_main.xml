@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -18,25 +19,36 @@
             android:layout_height="wrap_content"
             android:text="@string/login_page" />
 
-        <EditText
-            android:id="@+id/loginUsername"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/loginUsernameLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/username"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            tools:ignore="LabelFor" />
+            android:hint="Username"
+            app:errorEnabled="true"
+            >
 
-        <EditText
-            android:id="@+id/loginPassword"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/loginUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/loginPasswordLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/password"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            tools:ignore="LabelFor,TextFields" />
+            android:hint="Password"
+            app:errorEnabled="true"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/loginPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/loginButton"

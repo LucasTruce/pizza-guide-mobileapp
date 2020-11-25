@@ -1,40 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/registerUsername"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registerUsernameLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/username"
-            android:inputType="textPersonName" />
+            android:hint="Username"
+            app:placeholderText="Username"
+            app:errorEnabled="true"
+            >
 
-        <EditText
-            android:id="@+id/registerPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPassword" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/registerUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/registerEmail"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registerPasswordLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/e_mail"
-            android:inputType="textEmailAddress" />
+            android:hint="Password"
+            app:placeholderText="Password"
+            app:errorEnabled="true"
+         >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/registerPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/registerEmailLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            app:placeholderText="Email"
+            app:errorEnabled="true"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/registerEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:id="@+id/registerButtonRegister"
@@ -42,10 +67,5 @@
             android:layout_height="wrap_content"
             android:text="@string/register" />
 
-        <TextView
-            android:id="@+id/errorTextRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:visibility="invisible" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

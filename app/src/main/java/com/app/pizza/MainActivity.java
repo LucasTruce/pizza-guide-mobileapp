@@ -14,6 +14,7 @@ import com.app.pizza.model.UserAuthResponse;
 import com.app.pizza.model.UserLogin;
 import com.app.pizza.service.ServiceGenerator;
 import com.app.pizza.service.UserService;
+import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,8 +23,8 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     UserService userService;
-    EditText loginInput;
-    EditText passwordInput;
+    TextInputEditText loginInput;
+    TextInputEditText passwordInput;
     TextView textView;
 
     @Override
