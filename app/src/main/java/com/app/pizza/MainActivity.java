@@ -61,15 +61,15 @@ public class MainActivity extends AppCompatActivity {
                             editor.apply();
 
                             Log.d("Rola", userAuthResponse.getRoles().toString());
-
-                            if(userAuthResponse.getRoles().toString().contains("ROLE_ADMIN")){
-                                startActivity(intent);
-                            }
-                            else
-                            {
-                                textView.setText("Brak uprawnien administratora");
-                                textView.setVisibility(TextView.VISIBLE);
-                            }
+                            startActivity(intent);
+//                            if(userAuthResponse.getRoles().toString().contains("ROLE_ADMIN")){
+//                                startActivity(intent);
+//                            }
+//                            else
+//                            {
+//                                textView.setText("Brak uprawnien administratora");
+//                                textView.setVisibility(TextView.VISIBLE);
+//                            }
 
                         }
                         else
