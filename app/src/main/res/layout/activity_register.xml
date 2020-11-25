@@ -14,7 +14,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Username"
-            app:placeholderText="Username"
             app:errorEnabled="true"
             >
 
@@ -30,7 +29,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            app:placeholderText="Password"
             app:errorEnabled="true"
          >
 
@@ -49,7 +47,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
-            app:placeholderText="Email"
             app:errorEnabled="true"
             >
 
