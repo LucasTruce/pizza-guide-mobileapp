@@ -1,7 +1,6 @@
 package com.app.pizza;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,12 +9,14 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.app.pizza.model.UserAuthResponse;
-import com.app.pizza.model.UserLogin;
 import com.app.pizza.model.UserRegister;
 import com.app.pizza.model.UserRegisterResponse;
 import com.app.pizza.service.ServiceGenerator;
 import com.app.pizza.service.UserService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,7 +63,16 @@ public class RegisterActivity extends AppCompatActivity {
                         {
                             textView.setText("Zle dane");
                             textView.setVisibility(TextView.VISIBLE);
-                            Log.d("ERROR","ERROR");
+
+                            Gson gson = new GsonBuilder().create();
+                            UserRegisterResponse mError;
+                            try {
+                                mError= gson.fromJson(response.errorBody().string(), UserRegisterResponse.class);
+                                Log.d("msg", mError.getEmail() + mError.getUsername());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
                         }
                     }
 
