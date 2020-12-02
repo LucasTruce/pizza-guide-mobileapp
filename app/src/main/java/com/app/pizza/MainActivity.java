@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<UserAuthResponse> call, Response<UserAuthResponse> response) {
                         //textView.setVisibility(TextView.INVISIBLE);
+                        textView.setVisibility(TextView.INVISIBLE);
                         loginLabel.setErrorEnabled(false);
                         passwordLabel.setErrorEnabled(false);
 
