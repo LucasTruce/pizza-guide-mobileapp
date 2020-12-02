@@ -13,11 +13,12 @@
             android:id="@+id/registerUsernameLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
+            android:hint="@string/username"
             app:errorEnabled="true"
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:singleLine="true"
                 android:id="@+id/registerUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -28,11 +29,12 @@
             android:id="@+id/registerPasswordLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             app:errorEnabled="true"
          >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:singleLine="true"
                 android:id="@+id/registerPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,11 +48,12 @@
             android:id="@+id/registerEmailLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/e_mail"
             app:errorEnabled="true"
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:singleLine="true"
                 android:id="@+id/registerEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
