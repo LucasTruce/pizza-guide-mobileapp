@@ -1,16 +1,26 @@
 package com.app.pizza.utils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.pizza.R;
+import com.app.pizza.fragments.RecipeDetails;
 import com.app.pizza.model.Recipe;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -38,7 +48,16 @@ public class PaginationAdapter extends RecyclerView.Adapter<com.app.pizza.utils.
         holder.cardTitle.setText(recipe.getName());
         holder.cardDescription.setText(recipe.getDescription());
         holder.cardStepsTime.setText("0:00");
-
+        //holder.image.setImage(recipe.getMediaList().get(0));
+        Picasso.get().load(recipe.getMediaList().get(0).getLink()).into(holder.image);
+        holder.linearLayout.setOnClickListener(view -> {
+            Fragment fr = new RecipeDetails();
+            final SharedPreferences sharedPref = view.getContext().getSharedPreferences("pref", 0);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt("recipeId", recipe.getId());
+            editor.apply();
+            loadFragment(fr);
+        });
     }
 
     @Override
@@ -50,13 +69,17 @@ public class PaginationAdapter extends RecyclerView.Adapter<com.app.pizza.utils.
         private TextView cardTitle;
         private TextView cardDescription;
         private TextView cardStepsTime;
+        private ImageView image;
+        private LinearLayout linearLayout;
 
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            cardTitle = (TextView) itemView.findViewById(R.id.cardTitle);
-            cardDescription = (TextView) itemView.findViewById(R.id.cardDescription);
+            cardTitle = itemView.findViewById(R.id.cardTitle);
+            cardDescription = itemView.findViewById(R.id.cardDescription);
             cardStepsTime = itemView.findViewById(R.id.cardStepsTime);
+            image = itemView.findViewById(R.id.cardImage);
+            linearLayout = itemView.findViewById(R.id.recipeId);
 
         }
     }
@@ -64,6 +87,13 @@ public class PaginationAdapter extends RecyclerView.Adapter<com.app.pizza.utils.
     public void addRecipes(List<Recipe> packages) {
         recipeList.addAll(packages);
         notifyDataSetChanged();
+    }
+
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fragmentManager= ((AppCompatActivity)context).getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame,fragment).commit();
+        fragmentTransaction.addToBackStack(null);
     }
 
 }

@@ -21,6 +21,8 @@ import com.app.pizza.service.RecipeService;
 import com.app.pizza.service.ServiceGenerator;
 import com.app.pizza.utils.PaginationAdapter;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -62,13 +64,13 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         SharedPreferences sharedPref = view.getContext().getSharedPreferences("pref", 0);
-        recipeService = ServiceGenerator.createService(RecipeService.class, sharedPref.getString("TOKEN", ""));
+        recipeService = ServiceGenerator.createService(RecipeService.class, sharedPref.getString("token", ""));
 
         Call<RecipeResponse> call = recipeService.getRecipes();
 
         call.enqueue(new Callback<RecipeResponse>() {
             @Override
-            public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
+            public void onResponse(@NotNull Call<RecipeResponse> call, @NotNull Response<RecipeResponse> response) {
 
                 List<Recipe> recipes = response.body().getContent();
                 adapter = new PaginationAdapter(recipes, HomeFragment.this.getContext());
@@ -78,7 +80,7 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<RecipeResponse> call, Throwable t) {
+            public void onFailure(@NotNull Call<RecipeResponse> call, @NotNull Throwable t) {
 
             }
         });
@@ -118,7 +120,7 @@ public class HomeFragment extends Fragment {
 
         call.enqueue(new Callback<RecipeResponse>() {
             @Override
-            public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
+            public void onResponse(@NotNull Call<RecipeResponse> call, @NotNull Response<RecipeResponse> response) {
 
                 if(response.body().getNumber() != response.body().getTotalPages()  ){
                     List<Recipe> recipes = response.body().getContent();
@@ -133,7 +135,7 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<RecipeResponse> call, Throwable t) {
+            public void onFailure(@NotNull Call<RecipeResponse> call, @NotNull Throwable t) {
 
             }
         });

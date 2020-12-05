@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recipeFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.RecipeDetails">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/cardImage"
+                android:layout_width="match_parent"
+                android:layout_height="250dp" />
+
+            <TextView
+                android:id="@+id/labelName"
+                android:layout_width="50pt"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cardImage"
+                android:layout_marginStart="10pt"
+                android:textStyle="bold"
+                android:layout_marginTop="10pt"
+                android:layout_marginBottom="7pt"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/inputName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5pt"
+                android:layout_marginEnd="10pt"
+                android:layout_alignBaseline="@+id/labelName"
+                android:layout_toEndOf="@id/labelName"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/labelAuthor"
+                android:layout_width="50pt"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelName"
+                android:textStyle="bold"
+                android:layout_marginStart="10pt"
+                android:layout_marginBottom="7pt"
+                android:text="Author" />
+
+            <TextView
+                android:id="@+id/inputAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/labelAuthor"
+                android:layout_marginTop="5pt"
+                android:layout_marginEnd="10pt"
+                android:layout_toEndOf="@id/labelAuthor"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/labelDesc"
+                android:layout_width="50pt"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelAuthor"
+                android:textStyle="bold"
+                android:layout_marginStart="10pt"
+                android:layout_marginBottom="7pt"
+                android:text="Description" />
+
+            <TextView
+                android:id="@+id/inputDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/labelDesc"
+                android:layout_marginTop="5pt"
+                android:layout_marginEnd="10pt"
+                android:layout_toEndOf="@id/labelDesc"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/labelComponents"
+                android:layout_width="50pt"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_below="@+id/inputDesc"
+                android:layout_marginStart="10pt"
+                android:layout_marginTop="7pt"
+                android:layout_marginBottom="5pt"
+                android:text="Ingredients" />
+
+            <com.app.pizza.model.FullLengthListView
+                android:id="@+id/componentsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelComponents"
+                android:layout_marginLeft="10pt"
+                android:layout_marginRight="10pt" />
+
+            <TextView
+                android:id="@+id/inputSteps"
+                android:layout_width="50pt"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_below="@+id/componentsList"
+                android:layout_marginStart="10pt"
+                android:layout_marginTop="7pt"
+                android:layout_marginBottom="5pt"
+                android:text="Steps" />
+
+            <com.app.pizza.model.FullLengthListView
+                android:id="@+id/stepList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/inputSteps"
+                android:layout_marginLeft="10pt"
+                android:layout_marginRight="10pt" />
+
+            <TextView
+                android:id="@+id/labelComment"
+                android:layout_width="40pt"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/stepList"
+                android:textStyle="bold"
+                android:layout_marginStart="10pt"
+                android:layout_marginTop="7pt"
+                android:layout_marginBottom="5pt"
+                android:text="Comments" />
+
+            <com.app.pizza.model.FullLengthListView
+                android:id="@+id/commentsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelComment"
+                android:layout_marginLeft="10pt"
+                android:layout_marginRight="10pt"
+                android:layout_marginBottom="30pt"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</FrameLayout>

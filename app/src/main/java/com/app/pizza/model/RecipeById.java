@@ -6,13 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
-public class Recipe {
-
-    private int id;
+public class RecipeById {
     private String name;
     private String description;
+    private User user;
+    private List<Step> steps;
+    private List<Component> components;
+    private List<Comment> reviews;
     private List<Media> mediaList;
 }
