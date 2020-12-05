@@ -1,4 +1,4 @@
-package com.app.pizza.model;
+package com.app.pizza.model.recipe;
 
 import com.google.gson.annotations.SerializedName;
 

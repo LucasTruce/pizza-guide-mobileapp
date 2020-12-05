@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.app.pizza.R;
-import com.app.pizza.model.Comment;
+import com.app.pizza.model.reviews.Comment;
 
 import java.util.ArrayList;
 

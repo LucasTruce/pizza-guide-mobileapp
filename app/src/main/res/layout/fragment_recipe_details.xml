@@ -4,7 +4,7 @@
     android:id="@+id/recipeFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.RecipeDetails">
+    tools:context=".fragments.RecipeDetailsFragment">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -92,7 +92,7 @@
                 android:layout_marginBottom="5pt"
                 android:text="Ingredients" />
 
-            <com.app.pizza.model.FullLengthListView
+            <com.app.pizza.utils.FullLengthListView
                 android:id="@+id/componentsList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                 android:layout_marginBottom="5pt"
                 android:text="Steps" />
 
-            <com.app.pizza.model.FullLengthListView
+            <com.app.pizza.utils.FullLengthListView
                 android:id="@+id/stepList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
                 android:layout_marginBottom="5pt"
                 android:text="Comments" />
 
-            <com.app.pizza.model.FullLengthListView
+            <com.app.pizza.utils.FullLengthListView
                 android:id="@+id/commentsList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

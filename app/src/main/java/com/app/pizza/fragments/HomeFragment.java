@@ -15,11 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.pizza.R;
-import com.app.pizza.model.Recipe;
-import com.app.pizza.model.RecipeResponse;
+import com.app.pizza.model.recipe.Recipe;
+import com.app.pizza.model.recipe.RecipeResponse;
 import com.app.pizza.service.RecipeService;
 import com.app.pizza.service.ServiceGenerator;
-import com.app.pizza.utils.PaginationAdapter;
+import com.app.pizza.adapters.PaginationAdapter;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -1,4 +1,4 @@
-package com.app.pizza.model;
+package com.app.pizza.utils;
 
 import android.content.Context;
 import android.util.AttributeSet;

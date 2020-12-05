@@ -1,4 +1,6 @@
-package com.app.pizza.model;
+package com.app.pizza.model.reviews;
+
+import com.app.pizza.model.user.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

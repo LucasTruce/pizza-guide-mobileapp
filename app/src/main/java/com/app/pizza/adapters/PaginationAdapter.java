@@ -1,8 +1,7 @@
-package com.app.pizza.utils;
+package com.app.pizza.adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +17,13 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.pizza.R;
-import com.app.pizza.fragments.RecipeDetails;
-import com.app.pizza.model.Recipe;
+import com.app.pizza.fragments.RecipeDetailsFragment;
+import com.app.pizza.model.recipe.Recipe;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class PaginationAdapter extends RecyclerView.Adapter<com.app.pizza.utils.PaginationAdapter.MyViewHolder> {
+public class PaginationAdapter extends RecyclerView.Adapter<PaginationAdapter.MyViewHolder> {
 
     private List<Recipe> recipeList;
     private Context context;
@@ -51,7 +50,7 @@ public class PaginationAdapter extends RecyclerView.Adapter<com.app.pizza.utils.
         //holder.image.setImage(recipe.getMediaList().get(0));
         Picasso.get().load(recipe.getMediaList().get(0).getLink()).into(holder.image);
         holder.linearLayout.setOnClickListener(view -> {
-            Fragment fr = new RecipeDetails();
+            Fragment fr = new RecipeDetailsFragment();
             final SharedPreferences sharedPref = view.getContext().getSharedPreferences("pref", 0);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt("recipeId", recipe.getId());

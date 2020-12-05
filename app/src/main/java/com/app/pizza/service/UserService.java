@@ -1,9 +1,9 @@
 package com.app.pizza.service;
 
-import com.app.pizza.model.UserAuthResponse;
-import com.app.pizza.model.UserLogin;
-import com.app.pizza.model.UserRegister;
-import com.app.pizza.model.UserRegisterResponse;
+import com.app.pizza.model.user.UserAuthResponse;
+import com.app.pizza.model.user.UserLogin;
+import com.app.pizza.model.user.UserRegister;
+import com.app.pizza.model.user.UserRegisterResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

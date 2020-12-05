@@ -1,4 +1,4 @@
-package com.app.pizza.model;
+package com.app.pizza.model.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 @Getter
 @AllArgsConstructor
-public class Ingredients {
-    String name;
+public class User {
+    String username;
 }

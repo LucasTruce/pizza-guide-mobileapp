@@ -16,11 +16,11 @@ import com.app.pizza.R;
 import com.app.pizza.adapters.CommentAdapter;
 import com.app.pizza.adapters.ComponentAdapter;
 import com.app.pizza.adapters.StepAdapter;
-import com.app.pizza.model.Comment;
-import com.app.pizza.model.Component;
-import com.app.pizza.model.FullLengthListView;
-import com.app.pizza.model.RecipeById;
-import com.app.pizza.model.Step;
+import com.app.pizza.model.reviews.Comment;
+import com.app.pizza.model.component.Component;
+import com.app.pizza.utils.FullLengthListView;
+import com.app.pizza.model.recipe.RecipeById;
+import com.app.pizza.model.step.Step;
 import com.app.pizza.service.RecipeService;
 import com.app.pizza.service.ServiceGenerator;
 import com.squareup.picasso.Picasso;
@@ -33,7 +33,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RecipeDetails extends Fragment {
+public class RecipeDetailsFragment extends Fragment {
     private FullLengthListView listComments;
     private FullLengthListView listSteps;
     private FullLengthListView listComponents;
@@ -46,7 +46,7 @@ public class RecipeDetails extends Fragment {
 
     RecipeService recipeService;
 
-    public RecipeDetails() {
+    public RecipeDetailsFragment() {
         // Required empty public constructor
     }
 

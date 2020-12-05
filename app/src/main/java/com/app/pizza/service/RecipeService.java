@@ -1,7 +1,7 @@
 package com.app.pizza.service;
 
-import com.app.pizza.model.RecipeById;
-import com.app.pizza.model.RecipeResponse;
+import com.app.pizza.model.recipe.RecipeById;
+import com.app.pizza.model.recipe.RecipeResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

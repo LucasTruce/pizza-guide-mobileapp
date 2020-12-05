@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.app.pizza.R;
-import com.app.pizza.model.Step;
+import com.app.pizza.model.step.Step;
 
 import java.util.ArrayList;
 

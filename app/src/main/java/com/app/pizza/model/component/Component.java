@@ -1,4 +1,6 @@
-package com.app.pizza.model;
+package com.app.pizza.model.component;
+
+import com.app.pizza.model.ingredient.Ingredient;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,5 +11,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Component {
     String amount;
-    Ingredients ingredients;
+    Ingredient ingredients;
 }

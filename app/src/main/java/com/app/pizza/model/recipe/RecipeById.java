@@ -1,4 +1,10 @@
-package com.app.pizza.model;
+package com.app.pizza.model.recipe;
+
+import com.app.pizza.model.reviews.Comment;
+import com.app.pizza.model.component.Component;
+import com.app.pizza.model.media.Media;
+import com.app.pizza.model.step.Step;
+import com.app.pizza.model.user.User;
 
 import java.util.List;
 

@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.app.pizza.model.UserAuthResponse;
-import com.app.pizza.model.UserLogin;
+import com.app.pizza.model.user.UserAuthResponse;
+import com.app.pizza.model.user.UserLogin;
 import com.app.pizza.service.ServiceGenerator;
 import com.app.pizza.service.UserService;
 import com.google.android.material.textfield.TextInputEditText;

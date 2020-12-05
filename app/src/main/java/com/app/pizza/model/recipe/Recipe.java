@@ -1,4 +1,6 @@
-package com.app.pizza.model;
+package com.app.pizza.model.recipe;
+
+import com.app.pizza.model.media.Media;
 
 import java.util.List;
 

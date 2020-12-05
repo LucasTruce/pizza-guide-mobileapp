@@ -1,4 +1,4 @@
-package com.app.pizza.model;
+package com.app.pizza.model.media;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -7,8 +7,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.app.pizza.model.UserRegister;
-import com.app.pizza.model.UserRegisterResponse;
+import com.app.pizza.model.user.UserRegister;
+import com.app.pizza.model.user.UserRegisterResponse;
 import com.app.pizza.service.ServiceGenerator;
 import com.app.pizza.service.UserService;
 import com.google.android.material.textfield.TextInputEditText;

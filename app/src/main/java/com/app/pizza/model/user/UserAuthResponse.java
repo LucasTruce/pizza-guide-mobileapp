@@ -1,4 +1,4 @@
-package com.app.pizza.model;
+package com.app.pizza.model.user;
 
 import java.util.List;
 
