@@ -71,12 +71,10 @@ public class HomeFragment extends Fragment {
             public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
 
                 List<Recipe> recipes = response.body().getContent();
-                Log.d("AAAAA:", response.body().getContent() + "");
                 adapter = new PaginationAdapter(recipes, HomeFragment.this.getContext());
                 recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
-                //Toast.makeText(PaginationPackageActivity.this, response.body().getPageNumber(), Toast.LENGTH_SHORT).show();
-                //progressBar.setVisibility(View.GONE);
+
             }
 
             @Override
