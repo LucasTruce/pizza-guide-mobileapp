@@ -1,7 +1,9 @@
 package com.app.pizza.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +21,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.pizza.R;
 import com.app.pizza.fragments.RecipeDetailsFragment;
 import com.app.pizza.model.recipe.Recipe;
+import com.app.pizza.model.step.Step;
+import com.app.pizza.utils.Helper;
 import com.squareup.picasso.Picasso;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+import lombok.SneakyThrows;
 
 public class PaginationAdapter extends RecyclerView.Adapter<PaginationAdapter.MyViewHolder> {
 
@@ -40,14 +50,22 @@ public class PaginationAdapter extends RecyclerView.Adapter<PaginationAdapter.My
         return new MyViewHolder(view);
     }
 
+    @SneakyThrows
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Recipe recipe = recipeList.get(position);
+
+        String fullTime = "00:00:00";
+
+        for (Step step : recipe.getSteps()
+             ) {
+            fullTime = Helper.setTime(fullTime, step.getTime());
+        }
+
         holder.cardTitle.setText(recipe.getName());
         holder.cardDescription.setText(recipe.getDescription());
-        holder.cardStepsTime.setText("0:00");
-        //holder.image.setImage(recipe.getMediaList().get(0));
+        holder.cardStepsTime.setText(fullTime);
         Picasso.get().load(recipe.getMediaList().get(0).getLink()).into(holder.image);
         holder.linearLayout.setOnClickListener(view -> {
             Fragment fr = new RecipeDetailsFragment();

@@ -1,6 +1,7 @@
 package com.app.pizza.model.recipe;
 
 import com.app.pizza.model.media.Media;
+import com.app.pizza.model.step.Step;
 
 import java.util.List;
 
@@ -17,4 +18,5 @@ public class Recipe {
     private String name;
     private String description;
     private List<Media> mediaList;
+    private List<Step> steps;
 }

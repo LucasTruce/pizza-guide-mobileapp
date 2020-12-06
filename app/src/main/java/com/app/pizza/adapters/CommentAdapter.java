@@ -40,8 +40,7 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
         TextView comment = convertView.findViewById(R.id.labelComment);
 
         score.setRating(getItem(position).getScore());
-        //name.setText(getItem(position).getUser().getUsername());
-        name.setText("ADAMCWEL");
+        name.setText(getItem(position).getUser().getUsername());
         comment.setText(getItem(position).getDescription());
 
 
