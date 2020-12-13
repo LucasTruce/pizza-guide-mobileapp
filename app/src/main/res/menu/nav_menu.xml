@@ -9,6 +9,10 @@
                  android:id="@+id/home"
                 android:icon="@drawable/baseline_home_black_18dp"
                 tools:ignore="HardcodedText" />
+            <item android:title="Chats"
+                android:id="@+id/chat"
+                android:icon="@drawable/mail"
+                tools:ignore="HardcodedText" />
         </menu>
     </item>
 

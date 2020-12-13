@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.app.pizza.fragments.HomeFragment;
+import com.app.pizza.fragments.ChatFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class MenuActivity extends AppCompatActivity {
@@ -42,7 +43,7 @@ public class MenuActivity extends AppCompatActivity {
 
         //setting toolbar
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Home");
+        getSupportActionBar().setTitle("Pizza Guide");
 
         //setting user email and username on navigation
         View headerView = navigationView.getHeaderView(0);
@@ -74,6 +75,10 @@ public class MenuActivity extends AppCompatActivity {
                 {
                     case R.id.home:
                         fragment=new HomeFragment();
+                        loadFragment(fragment);
+                        break;
+                    case R.id.chat:
+                        fragment=new ChatFragment();
                         loadFragment(fragment);
                         break;
                     case R.id.logout:
