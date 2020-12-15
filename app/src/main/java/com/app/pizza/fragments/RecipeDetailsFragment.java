@@ -16,13 +16,13 @@ import com.app.pizza.R;
 import com.app.pizza.adapters.CommentAdapter;
 import com.app.pizza.adapters.ComponentAdapter;
 import com.app.pizza.adapters.StepAdapter;
-import com.app.pizza.model.reviews.Comment;
 import com.app.pizza.model.component.Component;
-import com.app.pizza.utils.FullLengthListView;
 import com.app.pizza.model.recipe.RecipeById;
+import com.app.pizza.model.reviews.Comment;
 import com.app.pizza.model.step.Step;
 import com.app.pizza.service.RecipeService;
 import com.app.pizza.service.ServiceGenerator;
+import com.app.pizza.utils.FullLengthListView;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;

@@ -64,7 +64,8 @@
                 android:layout_marginStart="7pt"
                 android:layout_marginBottom="7pt"
                 android:layout_toEndOf="@+id/mail"
-                android:text="Tu znajduje sie wiadomosc od uzytkownika" />
+                android:text="Tu znajduje sie wiadomosc od uzytkownika"
+                android:maxLines="1" />
         </RelativeLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

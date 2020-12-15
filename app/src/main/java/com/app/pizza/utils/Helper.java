@@ -1,6 +1,5 @@
 package com.app.pizza.utils;
 
-import android.annotation.SuppressLint;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;

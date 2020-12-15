@@ -3,6 +3,11 @@ package com.app.pizza.fragments;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -10,34 +15,18 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.app.pizza.R;
 import com.app.pizza.adapters.ChatAdapter;
 import com.app.pizza.model.chat.Chat;
 import com.app.pizza.model.chat.ChatPagination;
-import com.app.pizza.model.message.Message;
-import com.app.pizza.model.message.MessageResponse;
 import com.app.pizza.service.ChatService;
-import com.app.pizza.service.MessageService;
 import com.app.pizza.service.ServiceGenerator;
-import com.app.pizza.utils.Helper;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;

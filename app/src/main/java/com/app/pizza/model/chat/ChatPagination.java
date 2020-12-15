@@ -1,6 +1,5 @@
 package com.app.pizza.model.chat;
 
-import com.app.pizza.model.message.Message;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

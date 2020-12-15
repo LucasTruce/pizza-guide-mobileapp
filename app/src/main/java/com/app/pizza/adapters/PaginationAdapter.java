@@ -1,9 +1,8 @@
 package com.app.pizza.adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -25,10 +25,6 @@ import com.app.pizza.model.step.Step;
 import com.app.pizza.utils.Helper;
 import com.squareup.picasso.Picasso;
 
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import lombok.SneakyThrows;
@@ -50,6 +46,7 @@ public class PaginationAdapter extends RecyclerView.Adapter<PaginationAdapter.My
         return new MyViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @SneakyThrows
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {

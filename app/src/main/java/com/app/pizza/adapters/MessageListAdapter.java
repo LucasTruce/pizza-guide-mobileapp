@@ -2,17 +2,20 @@ package com.app.pizza.adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.pizza.R;
 import com.app.pizza.model.message.Message;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -26,6 +29,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     public MessageListAdapter(List<Message> messageList, Context context) {
         mContext = context;
         mMessageList = messageList;
+        //nie wiem czy tu nie mozna wykonać bezpośrednio calla i serwisu by pobierac dane po wyslaniu
     }
 
     @Override
@@ -68,6 +72,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
     }
 
     // Passes the message object to a ViewHolder so that the contents can be bound to UI.
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Message message = (Message) mMessageList.get(position);
@@ -81,7 +86,7 @@ public class MessageListAdapter extends RecyclerView.Adapter {
         }
     }
 
-    private class SentMessageHolder extends RecyclerView.ViewHolder {
+    private static class SentMessageHolder extends RecyclerView.ViewHolder {
         TextView messageText, timeText;
 
         SentMessageHolder(View itemView) {
@@ -91,34 +96,37 @@ public class MessageListAdapter extends RecyclerView.Adapter {
             timeText = (TextView) itemView.findViewById(R.id.text_message_time);
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.O)
         void bind(Message message) {
             messageText.setText(message.getMessage());
-
-            // Format the stored timestamp into a readable String using method.
-            //timeText.setText(Utils.formatDateTime(message.getCreatedAt()));
+            LocalDateTime localDateTime = LocalDateTime.parse(message.getSendTime());
+            timeText.setText(localDateTime.format(DateTimeFormatter.ofPattern("HH:mm")));
         }
     }
 
-    private class ReceivedMessageHolder extends RecyclerView.ViewHolder {
+    private static class ReceivedMessageHolder extends RecyclerView.ViewHolder {
         TextView messageText, timeText, nameText;
 
         ReceivedMessageHolder(View itemView) {
             super(itemView);
 
-            messageText = (TextView) itemView.findViewById(R.id.text_message_body);
-            timeText = (TextView) itemView.findViewById(R.id.text_message_time);
-            nameText = (TextView) itemView.findViewById(R.id.text_message_name);
+            messageText = (TextView) itemView.findViewById(R.id.text_message_body_received);
+            timeText = (TextView) itemView.findViewById(R.id.text_message_time_received);
+            nameText = (TextView) itemView.findViewById(R.id.text_message_name_received);
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.O)
         void bind(Message message) {
             messageText.setText(message.getMessage());
-
-            // Format the stored timestamp into a readable String using method.
-            //timeText.setText(Utils.formatDateTime(message.getCreatedAt()));
-
             nameText.setText(message.getSender().getUsername());
-
-            // Insert the profile image from the URL into the ImageView.
+            LocalDateTime localDateTime = LocalDateTime.parse(message.getSendTime());
+            timeText.setText(localDateTime.format(DateTimeFormatter.ofPattern("HH:mm")));
         }
+
+    }
+
+    public void addMessages(List<Message> messages){
+        mMessageList.addAll(messages);
+        notifyDataSetChanged();
     }
 }

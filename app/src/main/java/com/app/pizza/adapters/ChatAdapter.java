@@ -3,7 +3,6 @@ package com.app.pizza.adapters;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.pizza.R;
 import com.app.pizza.fragments.MessageFragment;
-import com.app.pizza.fragments.RecipeDetailsFragment;
 import com.app.pizza.model.chat.Chat;
 import com.app.pizza.utils.Helper;
 

@@ -17,8 +17,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.app.pizza.fragments.HomeFragment;
 import com.app.pizza.fragments.ChatFragment;
+import com.app.pizza.fragments.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class MenuActivity extends AppCompatActivity {
