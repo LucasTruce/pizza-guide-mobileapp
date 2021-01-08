@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +22,7 @@ import com.app.pizza.model.recipe.Recipe;
 import com.app.pizza.model.recipe.RecipeResponse;
 import com.app.pizza.service.RecipeService;
 import com.app.pizza.service.ServiceGenerator;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -35,6 +38,7 @@ public class HomeFragment extends Fragment {
     ProgressBar progressBar;
     LinearLayoutManager linearLayoutManager;
     RecipeService recipeService;
+    FloatingActionButton floatingActionButton;
 
     private PaginationAdapter adapter;
     private int pageNumber = 0;
@@ -62,6 +66,7 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.main_recycler);
         linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
+        floatingActionButton = view.findViewById(R.id.add_recipe_button);
 
         SharedPreferences sharedPref = view.getContext().getSharedPreferences("pref", 0);
         recipeService = ServiceGenerator.createService(RecipeService.class, sharedPref.getString("token", ""));
@@ -110,6 +115,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        floatingActionButton.setOnClickListener(view1 -> {
+            loadFragment(new NewRecipeFragment());
+        });
+
+
         return view;
     }
 
@@ -139,5 +149,12 @@ public class HomeFragment extends Fragment {
 
             }
         });
+    }
+
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fragmentManager= getFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame,fragment).commit();
+        fragmentTransaction.addToBackStack(null);
     }
 }

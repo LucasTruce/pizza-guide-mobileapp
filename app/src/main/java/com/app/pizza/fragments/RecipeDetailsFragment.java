@@ -107,7 +107,6 @@ public class RecipeDetailsFragment extends Fragment {
 
             @Override
             public void onFailure(@NotNull Call<RecipeById> call, @NotNull Throwable t) {
-                Log.d("Error", "Error");
             }
         });
 

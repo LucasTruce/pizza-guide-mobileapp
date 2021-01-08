@@ -11,7 +11,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +24,7 @@ import com.app.pizza.model.chat.Chat;
 import com.app.pizza.model.chat.ChatPagination;
 import com.app.pizza.service.ChatService;
 import com.app.pizza.service.ServiceGenerator;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -37,6 +41,7 @@ public class ChatFragment extends Fragment {
     RecyclerView recyclerView;
     ChatService chatService;
     LinearLayoutManager linearLayoutManager;
+    FloatingActionButton floatingActionButton;
 
     private ChatAdapter adapter;
     private int pageNumber = 0;
@@ -59,6 +64,7 @@ public class ChatFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
 
+        floatingActionButton = view.findViewById(R.id.add_chat_button);
         recyclerView = view.findViewById(R.id.chat_recycler);
         linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -72,18 +78,22 @@ public class ChatFragment extends Fragment {
             @Override
             public void onResponse(@NotNull Call<ChatPagination> call, @NotNull Response<ChatPagination> response) {
                 List<Chat> chats = response.body().getContent();
+                if(chats.contains(null))
+                {
 
-                Collections.sort(chats, (o1, o2) -> {
-                    try {
-                        LocalDateTime time1 = LocalDateTime.parse(o1.getMessage().get(0).getSendTime());
-                        LocalDateTime time2 = LocalDateTime.parse(o2.getMessage().get(0).getSendTime());
-                        return time1.compareTo(time2);
-                    } catch (Exception e) {
-                        throw new IllegalArgumentException(e);
-                    }
-                });
-
-                Collections.reverse(chats);
+                }
+                else {
+                    Collections.sort(chats, (o1, o2) -> {
+                        try {
+                            LocalDateTime time1 = LocalDateTime.parse(o1.getMessage().get(0).getSendTime());
+                            LocalDateTime time2 = LocalDateTime.parse(o2.getMessage().get(0).getSendTime());
+                            return time1.compareTo(time2);
+                        } catch (Exception e) {
+                            throw new IllegalArgumentException(e);
+                        }
+                    });
+                    Collections.reverse(chats);
+                }
 
                 adapter = new ChatAdapter(chats, ChatFragment.this.getContext());
                 recyclerView.setAdapter(adapter);
@@ -120,6 +130,11 @@ public class ChatFragment extends Fragment {
             }
         });
 
+        floatingActionButton.setOnClickListener(view1 -> {
+            loadFragment(new NewChatFragment());
+        });
+
+
         return view;
     }
 
@@ -146,5 +161,12 @@ public class ChatFragment extends Fragment {
 
             }
         });
+    }
+
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fragmentManager= getFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame,fragment).commit();
+        fragmentTransaction.addToBackStack(null);
     }
 }

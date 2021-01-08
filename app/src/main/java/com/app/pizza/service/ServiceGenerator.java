@@ -14,7 +14,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
-    private static final String BASE_URL = "http://pizzaguiderest-env.eba-wkwwthm5.us-east-1.elasticbeanstalk.com";
+    private static final String BASE_URL = "http://pizzaapp-env.eba-qaizt7pp.us-east-1.elasticbeanstalk.com";
 
     private static final Retrofit.Builder builder = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create());
 

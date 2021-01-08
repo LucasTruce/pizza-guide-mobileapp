@@ -42,7 +42,7 @@ public class PaginationAdapter extends RecyclerView.Adapter<PaginationAdapter.My
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipes_card_list, parent,false );
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recipes_card_list, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -56,14 +56,18 @@ public class PaginationAdapter extends RecyclerView.Adapter<PaginationAdapter.My
         String fullTime = "00:00:00";
 
         for (Step step : recipe.getSteps()
-             ) {
+        ) {
             fullTime = Helper.setTime(fullTime, step.getTime());
         }
 
         holder.cardTitle.setText(recipe.getName());
         holder.cardDescription.setText(recipe.getDescription());
         holder.cardStepsTime.setText(fullTime);
-        Picasso.get().load(recipe.getMediaList().get(0).getLink()).into(holder.image);
+        if (recipe.getMediaList().isEmpty()) {
+            Picasso.get().load("https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1024x576.png").into(holder.image);
+        } else {
+            Picasso.get().load(recipe.getMediaList().get(0).getLink()).into(holder.image);
+        }
         holder.linearLayout.setOnClickListener(view -> {
             Fragment fr = new RecipeDetailsFragment();
             final SharedPreferences sharedPref = view.getContext().getSharedPreferences("pref", 0);
@@ -104,9 +108,9 @@ public class PaginationAdapter extends RecyclerView.Adapter<PaginationAdapter.My
     }
 
     private void loadFragment(Fragment fragment) {
-        FragmentManager fragmentManager= ((AppCompatActivity)context).getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame,fragment).commit();
+        FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame, fragment).commit();
         fragmentTransaction.addToBackStack(null);
     }
 

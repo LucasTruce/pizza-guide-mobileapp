@@ -2,9 +2,12 @@ package com.app.pizza;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,7 +41,6 @@ public class MenuActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.main_toolbar);
-
         SharedPreferences sharedPref = getSharedPreferences("pref", 0);
 
         //setting toolbar
@@ -93,6 +95,8 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
     }
+
+
     private void loadFragment(Fragment fragment) {
         FragmentManager fragmentManager=getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();

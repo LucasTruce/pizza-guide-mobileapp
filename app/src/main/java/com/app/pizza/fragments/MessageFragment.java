@@ -111,7 +111,6 @@ public class MessageFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call<Message> call, Throwable t) {
-                    Log.d("test2222", "dwa22222");
                 }
             });
         });

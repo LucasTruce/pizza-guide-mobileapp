@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/labelIngredientsName"
+        android:layout_width="100pt"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="labelIngredientsName"
+        android:padding="5dp"/>
+
+    <EditText
+        android:id="@+id/labelIngredientsAmount"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:background="@android:color/transparent"
+        android:layout_toEndOf="@+id/labelIngredientsName"
+        android:layout_alignBaseline="@+id/labelIngredientsName"
+        android:inputType="number"
+        android:text="0"/>
+
+    <TextView
+        android:id="@+id/labelG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/labelIngredientsAmount"
+        android:layout_alignBaseline="@+id/labelIngredientsName"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="g"/>
+
+</RelativeLayout>

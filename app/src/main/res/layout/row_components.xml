@@ -6,15 +6,15 @@
 
     <TextView
         android:id="@+id/labelComponentName"
-        android:layout_width="50pt"
+        android:layout_width="70pt"
         android:layout_height="wrap_content"
-        android:text="labelStepName"/>
+        android:text="labelComponentName"/>
 
     <TextView
         android:id="@+id/labelComponentAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/labelComponentName"
-        android:text="labelStepTime"/>
+        android:text="0"/>
 
 </RelativeLayout>
