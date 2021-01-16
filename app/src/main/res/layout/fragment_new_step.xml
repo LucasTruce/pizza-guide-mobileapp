@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.NewComponentsFragment">
+    tools:context=".fragments.NewStepFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,20 +12,19 @@
         android:padding="20dp">
 
         <Button
-            android:id="@+id/add_new_components_button"
+            android:id="@+id/add_and_save_recipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Add steps 4/4"
+            android:layout_marginBottom="10dp"
+            android:text="Save and add recipe"
             />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_ingredients"
+            android:id="@+id/steps_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/add_new_components_button"
+            android:layout_below="@+id/add_and_save_recipe"
             android:clipToPadding="false" />
-
 
     </RelativeLayout>
 

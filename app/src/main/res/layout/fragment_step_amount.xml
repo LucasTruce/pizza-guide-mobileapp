@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.StepAmountFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/label_step_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:textSize="16dp"
+            android:text="Insert amount of steps" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/step_amount_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Steps amount"
+            android:layout_below="@id/label_step_amount"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_step_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:inputType="number"
+                android:layout_below="@id/step_amount_name"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/add_step_amount_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/step_amount_name"
+            android:text="Insert steps"
+            />
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -4,15 +4,23 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.app.pizza.R;
 import com.app.pizza.adapters.ComponentAdapter;
 import com.app.pizza.adapters.IngredientsAdapter;
+import com.app.pizza.adapters.NewStepAdapter;
 import com.app.pizza.model.chat.Chat;
+import com.app.pizza.model.component.Component;
 import com.app.pizza.model.ingredient.Ingredient;
 import com.app.pizza.model.reviews.Comment;
 import com.app.pizza.service.ChatService;
@@ -32,6 +40,12 @@ public class NewComponentsFragment extends Fragment {
     IngredientService ingredientService;
     SharedPreferences sharedPref;
     FullLengthListView ingredientsList;
+    Button add_new_components_button;
+    RecyclerView recyclerView;
+    LinearLayoutManager linearLayoutManager;
+    List<Component> components = new ArrayList<>();
+
+    private IngredientsAdapter adapter;
 
     public NewComponentsFragment() {
         // Required empty public constructor
@@ -51,7 +65,10 @@ public class NewComponentsFragment extends Fragment {
 
         sharedPref = view.getContext().getSharedPreferences("pref", 0);
         ingredientService = ServiceGenerator.createService(IngredientService.class, sharedPref.getString("token", ""));
-        ingredientsList = view.findViewById(R.id.ingredientsList);
+        recyclerView = view.findViewById(R.id.recycler_ingredients);
+        add_new_components_button = view.findViewById(R.id.add_new_components_button);
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         Call<List<Ingredient>> call = ingredientService.getIngredients();
         call.enqueue(new Callback<List<Ingredient>>() {
@@ -59,9 +76,14 @@ public class NewComponentsFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Ingredient>> call, Response<List<Ingredient>> response) {
                 if(response.isSuccessful()) {
-                    List<Ingredient> ingredients = response.body();
-                    IngredientsAdapter ingredientAdapter = new IngredientsAdapter(getActivity().getApplicationContext(), R.layout.row_ingredients, ingredients);
-                    ingredientsList.setAdapter(ingredientAdapter);
+                    for(Ingredient ingredient : response.body())
+                    {
+                        components.add(new Component("0", ingredient));
+                    }
+
+                    adapter = new IngredientsAdapter(components, getContext());
+                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
                 }
             }
 
@@ -71,6 +93,22 @@ public class NewComponentsFragment extends Fragment {
             }
         });
 
+        add_new_components_button.setOnClickListener(view1 ->
+        {
+            //IngredientsAdapter ingredientAdapter = new IngredientsAdapter(getActivity().getApplicationContext(), R.layout.row_ingredients, ingredients);
+            //ingredientsList.setAdapter(ingredientAdapter);
+
+
+            loadFragment(new StepAmountFragment());
+        });
+
         return view;
+    }
+
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fragmentManager= getFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame,fragment).commit();
+        fragmentTransaction.addToBackStack(null);
     }
 }

@@ -2,6 +2,7 @@ package com.app.pizza.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,36 +12,64 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.pizza.R;
 import com.app.pizza.model.component.Component;
 import com.app.pizza.model.ingredient.Ingredient;
+import com.app.pizza.model.ingredient.OneIngredient;
+import com.app.pizza.model.step.Step;
+import com.google.android.material.textfield.TextInputEditText;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class IngredientsAdapter extends ArrayAdapter<Ingredient> {
-    private Context mContext;
-    private int mResource;
+import lombok.SneakyThrows;
 
-    public IngredientsAdapter(@NonNull Context context, int resource, @NonNull List<Ingredient> objects) {
-        super(context, resource, objects);
-        this.mContext = context;
-        this.mResource = resource;
+public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.MyViewHolder> {
+
+    private List<Component> componentList;
+    private Context context;
+
+    public IngredientsAdapter(List<Component> componentList, Context context) {
+        this.componentList = componentList;
+        this.context = context;
     }
 
-    @SuppressLint("ViewHolder")
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-
-        convertView = layoutInflater.inflate(mResource, parent, false);
-
-        TextView name = convertView.findViewById(R.id.labelIngredientsName);
-        name.setText(getItem(position).getName());
-
-        return convertView;
+    public IngredientsAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_ingredients, parent, false);
+        return new IngredientsAdapter.MyViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @SneakyThrows
+    @Override
+    public void onBindViewHolder(@NonNull IngredientsAdapter.MyViewHolder holder, int position) {
+
+        Component component = componentList.get(position);
+
+        holder.labelIngredientsName.setText(component.getIngredients().getName());
+        holder.labelIngredientsAmount.setText("0");
+    }
+
+    @Override
+    public int getItemCount() {
+        return componentList.size();
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        private TextView labelIngredientsName;
+        private EditText labelIngredientsAmount;
+
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            labelIngredientsName = itemView.findViewById(R.id.labelIngredientsName);
+            labelIngredientsAmount = itemView.findViewById(R.id.labelIngredientsAmount);
+        }
+    }
 }

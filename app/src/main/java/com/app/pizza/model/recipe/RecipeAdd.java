@@ -1,4 +1,4 @@
-package com.app.pizza.model.step;
+package com.app.pizza.model.recipe;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,10 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Step {
-    String name;
-    String description;
-    String time;
+@AllArgsConstructor
+public class RecipeAdd {
+    private String name;
+    private String description;
 }
