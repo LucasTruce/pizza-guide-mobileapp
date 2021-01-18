@@ -109,9 +109,11 @@ public class NewComponentsFragment extends Fragment {
                 @Override
                 public void onResponse(Call<List<Component>> call, Response<List<Component>> response) {
                     if(response.isSuccessful()) {
-
                         loadFragment(new StepAmountFragment());
-
+                    }
+                    else if(response.code()==400)
+                    {
+                        componentsToAdd.clear();
                     }
                 }
                 @Override

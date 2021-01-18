@@ -1,17 +1,20 @@
 package com.app.pizza.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -22,6 +25,7 @@ import com.app.pizza.adapters.CommentAdapter;
 import com.app.pizza.adapters.ComponentAdapter;
 import com.app.pizza.adapters.StepAdapter;
 import com.app.pizza.model.component.Component;
+import com.app.pizza.model.media.Media;
 import com.app.pizza.model.recipe.RecipeById;
 import com.app.pizza.model.reviews.AddComment;
 import com.app.pizza.model.reviews.Comment;
@@ -53,10 +57,13 @@ public class RecipeDetailsFragment extends Fragment {
     private TextView inputDesc;
     private TextInputEditText add_comment_input;
     private TextInputEditText add_grade_input;
+    private TextInputLayout add_grade;
+    private TextInputLayout add_comment;
     private Button add_comment_button;
     private AddComment addComment = new AddComment();
     private CommentService commentService;
-
+    private ViewFlipper viewFlipper;
+    private float lastX;
 
     RecipeService recipeService;
 
@@ -75,14 +82,18 @@ public class RecipeDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_recipe_details, container, false);
-        cardImage = view.findViewById(R.id.cardImage);
+
         inputAuthor = view.findViewById(R.id.inputAuthor);
         inputDesc = view.findViewById(R.id.inputDesc);
         inputName = view.findViewById(R.id.inputName);
+        viewFlipper = view.findViewById(R.id.cardImage);
         add_grade_input = view.findViewById(R.id.add_grade_input);
         add_comment_input = view.findViewById(R.id.add_comment_input);
+        add_grade = view.findViewById(R.id.add_grade);
+        add_comment = view.findViewById(R.id.add_comment);
         add_comment_button = view.findViewById(R.id.add_comment_button);
         SharedPreferences sharedPref = view.getContext().getSharedPreferences("pref", 0);
+
 
         listComments = view.findViewById(R.id.commentsList);
         listComponents = view.findViewById(R.id.componentsList);
@@ -132,6 +143,7 @@ public class RecipeDetailsFragment extends Fragment {
         Call<RecipeById> call = recipeService.getRecipeById(sharedPref.getInt("recipeId", 0));
 
         call.enqueue(new Callback<RecipeById>() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public void onResponse(@NotNull Call<RecipeById> call, @NotNull Response<RecipeById> response) {
                 if(response.isSuccessful())
@@ -144,7 +156,36 @@ public class RecipeDetailsFragment extends Fragment {
                     inputAuthor.setText(recipe.getUser().getUsername());
                     inputDesc.setText(recipe.getDescription());
                     inputName.setText(recipe.getName());
-                    Picasso.get().load(recipe.getMediaList().get(0).getLink()).into(cardImage);
+
+                    for (Media media: recipe.getMediaList())
+                    {
+                        flipperImages(media.getLink());
+                    }
+                    if(recipe.getMediaList().size() > 1)
+                        viewFlipper.startFlipping();
+                    else if(recipe.getMediaList().size() == 0)
+                        flipperImages("https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1024x576.png");
+
+
+                    for(Comment comment : comments)
+                    {
+                        Log.d("test", comment.getUser().getUsername() + sharedPref.getString("username", ""));
+                        if(comment.getUser().getUsername().equals(sharedPref.getString("username", "")))
+                        {
+                            Log.d("blad", "block");
+                            /*add_comment_button.setOnClickListener(view1 -> {
+                                Toast.makeText(getContext(), "Dodałeś już ocene do tego przepisu", Toast.LENGTH_SHORT).show();
+                            });*/
+                            add_comment_input.setText(comment.getDescription());
+                            add_grade_input.setText(String.valueOf(comment.getScore()));
+                            add_comment_input.setEnabled(false);
+                            add_grade_input.setEnabled(false);
+                            add_comment_button.setEnabled(false);
+                        }
+                    }
+
+
+
 
                     CommentAdapter commentAdapter = new CommentAdapter(getActivity().getApplicationContext(), R.layout.row_comments, comments);
                     StepAdapter stepAdapter = new StepAdapter(getActivity().getApplicationContext(), R.layout.row_steps, steps);
@@ -164,6 +205,18 @@ public class RecipeDetailsFragment extends Fragment {
 
         return view;
     }
+
+    private void flipperImages(String link)
+    {
+        ImageView imageView = new ImageView(this.getContext());
+        Picasso.get().load(link).into(imageView);
+        viewFlipper.addView(imageView);
+        viewFlipper.setFlipInterval(5000);
+        viewFlipper.setAutoStart(true);
+        viewFlipper.setInAnimation(this.getContext(), android.R.anim.slide_in_left);
+        viewFlipper.setOutAnimation(this.getContext(), android.R.anim.slide_out_right);
+    }
+
 
     private void loadFragment(Fragment fragment) {
         FragmentManager fragmentManager= getFragmentManager();
