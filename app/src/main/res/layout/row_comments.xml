@@ -25,7 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/labelCommentName"
-        android:text="labelComment"/>
+        android:text="labelComment"
+        android:paddingBottom="5dp"/>
 
 
 </RelativeLayout>

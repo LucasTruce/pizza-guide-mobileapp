@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.pizza.R;
 import com.app.pizza.fragments.RecipeDetailsFragment;
+import com.app.pizza.model.component.Component;
 import com.app.pizza.model.recipe.Recipe;
 import com.app.pizza.model.step.Step;
 import com.app.pizza.utils.Helper;
@@ -54,14 +57,63 @@ public class NewStepAdapter extends RecyclerView.Adapter<NewStepAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull NewStepAdapter.MyViewHolder holder, int position) {
 
-        Step step = stepList.get(position);
         String number = String.valueOf(position+1);
 
         holder.input_step_number.setText(number);
         holder.name.setText("");
         holder.description.setText("");
         holder.time.setText("");
+
+        holder.name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                stepList.get(position).setName(s.toString().trim());
+            }
+        });
+
+        holder.description.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                stepList.get(position).setDescription(s.toString().trim());
+            }
+        });
+
+        holder.time.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                stepList.get(position).setTime(s.toString().trim());
+            }
+        });
     }
+
+    public List<Step> getStepList() {
+        return stepList;
+    }
+
 
     @Override
     public int getItemCount() {

@@ -44,6 +44,7 @@ public class NewComponentsFragment extends Fragment {
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
     List<Component> components = new ArrayList<>();
+    List<Component> componentsToAdd = new ArrayList<>();
 
     private IngredientsAdapter adapter;
 
@@ -83,6 +84,7 @@ public class NewComponentsFragment extends Fragment {
 
                     adapter = new IngredientsAdapter(components, getContext());
                     recyclerView.setAdapter(adapter);
+
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -95,11 +97,28 @@ public class NewComponentsFragment extends Fragment {
 
         add_new_components_button.setOnClickListener(view1 ->
         {
-            //IngredientsAdapter ingredientAdapter = new IngredientsAdapter(getActivity().getApplicationContext(), R.layout.row_ingredients, ingredients);
-            //ingredientsList.setAdapter(ingredientAdapter);
+            components = adapter.getComponentList();
+            for(Component component : components)
+            {
+                if(component.getAmount() != "0")
+                    componentsToAdd.add(component);
+            }
 
+            Call<List<Component>> callSecond = ingredientService.addComponents(componentsToAdd, sharedPref.getInt("newRecipeId", 0));
+            callSecond.enqueue(new Callback<List<Component>>() {
+                @Override
+                public void onResponse(Call<List<Component>> call, Response<List<Component>> response) {
+                    if(response.isSuccessful()) {
 
-            loadFragment(new StepAmountFragment());
+                        loadFragment(new StepAmountFragment());
+
+                    }
+                }
+                @Override
+                public void onFailure(Call<List<Component>> call, Throwable t) {
+                    Log.d("error", t.getMessage());
+                }
+            });
         });
 
         return view;

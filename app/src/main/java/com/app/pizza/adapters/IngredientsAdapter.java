@@ -3,6 +3,9 @@ package com.app.pizza.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +22,7 @@ import com.app.pizza.R;
 import com.app.pizza.model.component.Component;
 import com.app.pizza.model.ingredient.Ingredient;
 import com.app.pizza.model.ingredient.OneIngredient;
+import com.app.pizza.model.reviews.Comment;
 import com.app.pizza.model.step.Step;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -54,7 +58,29 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
         Component component = componentList.get(position);
 
         holder.labelIngredientsName.setText(component.getIngredients().getName());
-        holder.labelIngredientsAmount.setText("0");
+        holder.labelIngredientsAmount.setText(component.getAmount());
+
+        holder.labelIngredientsAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                componentList.get(position).setAmount(s.toString().trim());
+            }
+        });
+
+
+
+    }
+
+    public List<Component> getComponentList() {
+        return componentList;
     }
 
     @Override

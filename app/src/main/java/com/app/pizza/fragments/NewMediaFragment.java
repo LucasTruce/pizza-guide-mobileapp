@@ -67,9 +67,6 @@ public class NewMediaFragment extends Fragment {
     File file;
     MultipartBody.Part part;
     RequestBody fbody;
-    String path[];
-    String newPath;
-
 
     public NewMediaFragment() {
         // Required empty public constructor
